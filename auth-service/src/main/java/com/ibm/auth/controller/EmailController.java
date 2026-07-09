@@ -2,6 +2,7 @@ package com.ibm.auth.controller;
 
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -22,23 +23,13 @@ import com.ibm.auth.service.OtpService;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@RequiredArgsConstructor
 public class EmailController {
 
     private final OtpService otpService;
     private final EmailService emailService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
-    public EmailController(OtpService otpService,
-                           EmailService emailService,
-                           UserRepository userRepository,
-                           PasswordEncoder passwordEncoder) {
-        this.otpService = otpService;
-        this.emailService = emailService;
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
-
  
     @PostMapping("/forgot-password")
     public ResponseEntity<ApiResponse> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
