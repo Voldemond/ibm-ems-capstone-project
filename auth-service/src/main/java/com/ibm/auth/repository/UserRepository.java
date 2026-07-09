@@ -24,4 +24,8 @@ public interface UserRepository extends MongoRepository<User, String> {
 
     List<User> findAllByDeletedFalse();
 
+    boolean existsByEmployeeId(String employeeId);
+
+    Optional<User> findTopByOrderByEmployeeIdDesc();
+
 }
